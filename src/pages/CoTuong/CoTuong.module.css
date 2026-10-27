@@ -1,0 +1,275 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #1c1917;
+  color: #f5f5f4;
+  padding: 24px 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  user-select: none;
+  position: relative;
+}
+
+.topNav {
+  width: min(92vw, 460px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #a8a29e;
+  border: 1px solid #44403c;
+  background: #292524;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.backBtn:hover {
+  background: #44403c;
+  color: #fff;
+}
+
+.hud {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modeToggle {
+  background: #292524;
+  border: 1px solid #44403c;
+  color: #d6d3d1;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.modeToggle:hover {
+  background: #44403c;
+  color: #fff;
+}
+.modeActive {
+  background: #dc2626 !important;
+  color: #fff !important;
+  border-color: #ef4444 !important;
+}
+
+.turnIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #292524;
+  border: 1px solid #44403c;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.turnDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.dotRed { background: #dc2626; box-shadow: 0 0 6px #dc2626; }
+.dotBlack { background: #1c1917; border: 1px solid #78716c; }
+
+.thinkingDot {
+  width: 8px;
+  height: 8px;
+  background: #f87171;
+  border-radius: 50%;
+  animation: pulse 0.8s infinite alternate;
+}
+@keyframes pulse {
+  from { opacity: 0.3; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1.2); }
+}
+
+/* Status Alert Banner */
+.statusBanner {
+  width: min(92vw, 460px);
+  margin-bottom: 12px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+.checkAlert {
+  background: rgba(220, 38, 38, 0.2);
+  border: 1px solid #ef4444;
+  color: #fca5a5;
+  animation: checkPulse 1s infinite alternate;
+}
+@keyframes checkPulse {
+  from { box-shadow: 0 0 4px rgba(220, 38, 38, 0.2); }
+  to { box-shadow: 0 0 12px rgba(220, 38, 38, 0.7); }
+}
+
+.gameEndAlert {
+  background: rgba(234, 179, 8, 0.2);
+  border: 1px solid #eab308;
+  color: #fde047;
+}
+
+/* Board Frame */
+.boardWrapper {
+  background: #78350f;
+  padding: 14px;
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  border: 4px solid #451a03;
+  position: relative;
+}
+
+/* 100% STRICT SQUARE GRID - 9 COLUMNS x 10 ROWS */
+.board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  width: min(88vw, 440px);
+  aspect-ratio: 9 / 10;
+  background: #d97706;
+  gap: 1px;
+  border: 2px solid #451a03;
+  position: relative;
+}
+
+/* Every cell is strictly square and equal */
+.cell {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  background: #fed7aa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.1s ease;
+}
+
+.cell:hover {
+  background: #ffedd5;
+}
+
+/* Sông Sở Hà - Hán Giới */
+.riverOverlay {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.riverText {
+  font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: rgba(120, 53, 15, 0.65);
+}
+
+/* Piece Token Styling */
+.piece {
+  width: 84%;
+  height: 84%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: clamp(1rem, 3.2vw, 1.35rem);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.35);
+  border: 2px solid;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.12s ease;
+}
+
+.piece:hover {
+  transform: scale(1.08);
+}
+
+.redPiece {
+  background: #fff5f5;
+  color: #dc2626;
+  border-color: #dc2626;
+}
+
+.blackPiece {
+  background: #f8fafc;
+  color: #1c1917;
+  border-color: #1c1917;
+}
+
+.selected {
+  outline: 3px solid #2563eb !important;
+  box-shadow: 0 0 12px #2563eb !important;
+  transform: scale(1.12);
+}
+
+.inCheckKing {
+  outline: 3px solid #ef4444 !important;
+  box-shadow: 0 0 14px #ef4444 !important;
+  animation: kingCheckGlow 0.8s infinite alternate;
+}
+@keyframes kingCheckGlow {
+  from { filter: brightness(1); }
+  to { filter: brightness(1.3); }
+}
+
+.validPoint::after {
+  content: '';
+  width: 24%;
+  height: 24%;
+  border-radius: 50%;
+  background: #16a34a;
+  position: absolute;
+  z-index: 3;
+  box-shadow: 0 0 6px #16a34a;
+}
+
+/* Bottom Toolbar */
+.bottomBar {
+  width: min(92vw, 460px);
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
+  background: #dc2626;
+  color: #fff;
+  border: none;
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.btn:hover {
+  background: #b91c1c;
+}

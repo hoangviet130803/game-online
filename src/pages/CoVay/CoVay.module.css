@@ -1,0 +1,323 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #064e3b;
+  color: #f0fdf4;
+  padding: 24px 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  user-select: none;
+  position: relative;
+}
+
+.topNav {
+  width: min(92vw, 480px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #a7f3d0;
+  border: 1px solid #065f46;
+  background: #022c22;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.backBtn:hover {
+  background: #065f46;
+  color: #fff;
+}
+
+.hud {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modeToggle {
+  background: #022c22;
+  border: 1px solid #065f46;
+  color: #a7f3d0;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.modeToggle:hover {
+  background: #065f46;
+  color: #fff;
+}
+.modeActive {
+  background: #10b981 !important;
+  color: #022c22 !important;
+  border-color: #34d399 !important;
+  font-weight: 700 !important;
+}
+
+.turnIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #022c22;
+  border: 1px solid #065f46;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.turnDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.dotBlack { background: #0f172a; box-shadow: 0 0 6px rgba(0,0,0,0.8); }
+.dotWhite { background: #ffffff; box-shadow: 0 0 6px #fff; }
+
+.thinkingDot {
+  width: 8px;
+  height: 8px;
+  background: #34d399;
+  border-radius: 50%;
+  animation: pulse 0.8s infinite alternate;
+}
+@keyframes pulse {
+  from { opacity: 0.3; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1.2); }
+}
+
+/* Status Alert Banner */
+.statusBanner {
+  width: min(92vw, 480px);
+  margin-bottom: 12px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.5px;
+  background: rgba(6, 78, 59, 0.6);
+  border: 1px solid #059669;
+}
+.koAlert {
+  background: rgba(220, 38, 38, 0.2);
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+
+.infoBar {
+  width: min(92vw, 480px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 0.84rem;
+  color: #cbd5e1;
+}
+
+.prisonerBadge {
+  background: #022c22;
+  border: 1px solid #065f46;
+  padding: 5px 12px;
+  border-radius: 6px;
+}
+
+/* Board Frame */
+.boardWrapper {
+  background: #b45309;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  border: 4px solid #78350f;
+  position: relative;
+}
+
+/* 100% STRICT SQUARE GRID - EQUAL CELLS */
+.board {
+  display: grid;
+  width: min(88vw, 440px);
+  aspect-ratio: 1 / 1;
+  background: #fde047;
+  border: 2px solid #854d0e;
+  position: relative;
+}
+
+/* Each intersection is strictly square */
+.intersection {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Crisp grid lines passing through the intersection point */
+.intersection::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #854d0e;
+  z-index: 1;
+}
+
+.intersection::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #854d0e;
+  z-index: 1;
+}
+
+/* Hoshi (Star Point) */
+.hoshi::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: #78350f;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+/* Cấm Kiếp (Ko forbidden point) */
+.koPointSquare::after {
+  content: '✕';
+  color: #dc2626;
+  font-size: 16px;
+  font-weight: 900;
+  position: absolute;
+  z-index: 3;
+}
+
+/* Polished Stones */
+.stone {
+  width: 82%;
+  height: 82%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+  transition: transform 0.1s ease;
+}
+
+.stone:hover {
+  transform: scale(1.06);
+}
+
+.blackStone {
+  background: radial-gradient(circle at 35% 35%, #475569, #0f172a 75%, #000 100%);
+}
+
+.whiteStone {
+  background: radial-gradient(circle at 35% 35%, #ffffff, #e2e8f0 75%, #94a3b8 100%);
+}
+
+/* Game Over Result Modal */
+.resultOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 44, 34, 0.92);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  padding: 24px;
+  text-align: center;
+}
+.resultTitle {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fde047;
+  margin-bottom: 12px;
+}
+.resultScoreTable {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #065f46;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 18px;
+  color: #e2e8f0;
+}
+
+/* Bottom Controls */
+.bottomBar {
+  width: min(92vw, 480px);
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btnGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  background: #047857;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.btn:hover {
+  background: #059669;
+}
+
+.btnSecondary {
+  background: #022c22;
+  border: 1px solid #065f46;
+  color: #a7f3d0;
+}
+.btnSecondary:hover {
+  background: #064e3b;
+}
+
+.btnResign {
+  background: rgba(220, 38, 38, 0.15);
+  border: 1px solid #dc2626;
+  color: #fca5a5;
+}
+.btnResign:hover {
+  background: #dc2626;
+  color: #fff;
+}
